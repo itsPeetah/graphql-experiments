@@ -155,6 +155,8 @@ const RootMutationType = new GraphQLObjectType({
                 const artist = artists.find(theArtist => theArtist.id === args.id);
                 artists = artists.filter(theArtist => theArtist.id !== args.id);
                 songs = songs.filter(theSong => theSong.artistId !== args.id);
+                // this will return the artist with no songs since they have been deleted
+                // not in scope for now to return the artist with the songs
                 return artist;
             }
         }
