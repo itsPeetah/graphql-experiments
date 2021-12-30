@@ -135,6 +135,28 @@ const RootMutationType = new GraphQLObjectType({
                 });
                 return songs.find(theSong => theSong.id === args.id)
             }
+        },
+        deleteSong:{
+            type: SongType,
+            description: 'Delete a song',
+            args: {id: {type: new GraphQLNonNull(GraphQLInt)}},
+            resolve: (_, args) => {
+                // Not updating the ids since it's out of scope for what I'm doing now
+                const song = songs.find(theSong => theSong.id === args.id);
+                songs = songs.filter(theSong => theSong.id !== args.id);
+                return song;
+            }
+        },
+        deleteArtist: {
+            type: ArtistType,
+            description: 'Delete an artist and all of their songs.',
+            args: {id: {type: new GraphQLNonNull(GraphQLInt)}},
+            resolve: (_, args) => {
+                const artist = artists.find(theArtist => theArtist.id === args.id);
+                artists = artists.filter(theArtist => theArtist.id !== args.id);
+                songs = songs.filter(theSong => theSong.artistId !== args.id);
+                return artist;
+            }
         }
     })
 });
