@@ -120,6 +120,21 @@ const RootMutationType = new GraphQLObjectType({
                 artists.push(theArtist);
                 return theArtist;
             }
+        },
+        changeSongTitle:{
+            type:SongType,
+            description:"Change a song's title",
+            args: {
+                id:{type:new GraphQLNonNull(GraphQLInt)},
+                newTitle: {type:new GraphQLNonNull(GraphQLString)}
+            },
+            resolve: (parent, args) => {
+                songs = songs.map((theSong) => {
+                    if(theSong.id === args.id) theSong.title = args.newTitle;
+                    return theSong;
+                });
+                return songs.find(theSong => theSong.id === args.id)
+            }
         }
     })
 });
