@@ -9,3 +9,4 @@ Just trying to learn some graphql
 ## What I still want to implement
 - Error handling inside of the resolvers
 - Perhaps define the schema in **.gql** files?
+- Integrate TypeScript
