@@ -16,3 +16,19 @@ export type GQLContext =
         songs: [SongData]
     }
 }
+
+// export type GQLContext = 
+// {
+//     data: {
+//         artists: [{
+//             id: number,
+//             title: string,
+//             artistId: number
+//         }],
+//         songs: [{
+//             id: number,
+//             title: string,
+//             artistId: number
+//         }]
+//     }
+// }
