@@ -10,3 +10,4 @@ Just trying to learn some graphql
 - Error handling inside of the resolvers
 - Perhaps define the schema in **.gql** files?
 - Integrate TypeScript
+- Client/Server configuration
