@@ -8,6 +8,7 @@ const {
     GraphQLList,
     GraphQLNonNull
     } = require('graphql')
+const schema2 = {schema }= require("./src/graphql")
 
 // In memory storage
 artists = [
