@@ -1,19 +1,11 @@
-interface SongData {
-    id: number;
-    title: string;
-    artistId: number;
-}
+import { Artist } from "../entities/Artist";
+import { Song } from "../entities/Song";
 
-interface ArtistData{
-    id: number;
-    name: string;
-}
-
-export type GQLContext = 
+export interface GQLContext
 {
     data: {
-        artists: [ArtistData],
-        songs: [SongData]
+        artists: [Artist],
+        songs: [Song]
     }
 }
 
