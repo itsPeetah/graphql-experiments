@@ -4,8 +4,8 @@ import { Song } from "../entities/Song";
 export interface GQLContext
 {
     data: {
-        artists: [Artist],
-        songs: [Song]
+        artists: Artist[],
+        songs: Song[]
     }
 }
 
