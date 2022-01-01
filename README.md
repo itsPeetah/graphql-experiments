@@ -3,8 +3,8 @@
 ## Branches
 | Branch | Scope | Content |
 | -: | :-: | :- |
-| v1 | First steps | GraphQL, Express |
-| v2 | type-graphql | TypeScript, type-graphql |
+| [v1](https://github.com/itsPeetah/graphql-experiments/tree/v1) | First steps | GraphQL, Express |
+| [v2](https://github.com/itsPeetah/graphql-experiments/tree/v2) | type-graphql | TypeScript, type-graphql |
 
 ## Next Step
 - TypeORM PostreSQL connection
