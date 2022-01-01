@@ -1,7 +1,7 @@
 import { Field, Int, ObjectType } from "type-graphql";
 import { Song } from "./Song";
 
-@ObjectType()
+@ObjectType({description: "A single artist."})
 export class Artist {
 
     @Field(() => Int)

@@ -5,14 +5,14 @@ import { GQLContext } from "../context";
 
 @Resolver(_=>Song)
 export class SongResolver{
-    @Query(() => [Song])
+    @Query(() => [Song], {description: "List all the songs."})
     songs(
         @Ctx() {data} : GQLContext
     ){
         return data.songs;
     }
     
-    @Query(() => Song, {nullable: true})
+    @Query(() => Song, {nullable: true, description: "Fetch a single song."})
     song(
         @Arg("id", () => Int) id : number,
         @Ctx() {data}: GQLContext
@@ -21,7 +21,7 @@ export class SongResolver{
         return song;
     }
     
-    @FieldResolver(() => Artist, {nullable: true})
+    @FieldResolver(() => Artist, {nullable: true, description:"Fetch the song's artist."})
     artist(
         @Root() song: Song,
         @Ctx() {data}: GQLContext
@@ -30,7 +30,7 @@ export class SongResolver{
         return artist;
     }
 
-    @Mutation(() => Song)
+    @Mutation(() => Song, {description: "Create a new song."})
     addSong(
         @Arg("title", () => String) title: string,
         @Arg("artistId", () => Int) artistId: number,
@@ -41,7 +41,7 @@ export class SongResolver{
         return song;
     }
 
-    @Mutation(() => Boolean)
+    @Mutation(() => Boolean, {description: "Change a song's title."})
     changeSongTitle(
         @Arg("id", () => Int) id: number,
         @Arg("newTitle", () => String) newTitle: string,
@@ -57,7 +57,7 @@ export class SongResolver{
         return success;
     }
 
-    @Mutation(()=>Boolean)
+    @Mutation(()=>Boolean, {description: "Remove a song from the database."})
     deleteSong(
         @Arg("id", () => Int) id : number,
         @Ctx() {data} : GQLContext
