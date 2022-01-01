@@ -1,18 +1,12 @@
-# graphql-first-steps
-Just trying to learn some graphql
+# GraphQL Experiments
 
-## What's in here
-- Simple in-memory database with artists and songs.
-- GraphQL schema with root query and mutation
-- Some CRUD operations
+## Branches
 
-## What I still want to implement
-- Error handling inside of the resolvers
-- Perhaps define the schema in **.gql** files?
-- Integrate TypeScript
-- Client/Server configuration
+## Next Step
+- TypeORM PostreSQL connection
+- Move the in-memory database to Postgres
 
 
-# Usage:
-1 terminal on script watch
-1 terminal on script dev
+## Usage
+Run either ```yarn watch``` or ```npm run watch``` on a terminal.
+Run either ```yarn dev``` or ```npm run dev``` on a second terminal.
