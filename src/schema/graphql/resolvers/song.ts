@@ -1,5 +1,5 @@
-import { Artist } from "../../entities/Artist";
 import { Arg, Ctx, FieldResolver, Int, Query, Resolver, Root } from "type-graphql";
+import { Artist } from "../../entities/Artist";
 import { Song } from "../../entities/Song";
 import { GQLContext } from "../context";
 

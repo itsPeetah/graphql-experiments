@@ -1,5 +1,6 @@
-import { Artist } from "../../entities/Artist";
 import { Arg, Ctx, FieldResolver, Int, Query, Resolver, Root } from "type-graphql";
+import { Artist } from "../../entities/Artist";
+import { Song } from "../../entities/Song";
 import { GQLContext } from "../context";
 
 @Resolver(_=>Artist)
@@ -15,7 +16,7 @@ export class ArtistResolver{
         return artist;
     }
 
-    @FieldResolver()
+    @FieldResolver(() => [Song])
     songs( @Root() artist: Artist,@Ctx() {data} : GQLContext){
         const songs = data.songs.filter(thesong => thesong.artistId === artist.id)
         return songs
