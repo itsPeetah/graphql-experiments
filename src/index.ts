@@ -4,6 +4,9 @@ import { graphqlHTTP } from "express-graphql";
 import {buildSchema} from "type-graphql"
 import { SongResolver } from "./schema/graphql/resolvers/song";
 import { ArtistResolver } from "./schema/graphql/resolvers/artist";
+import { createConnection } from "typeorm";
+import { Artist } from "./schema/entities/Artist";
+import { Song } from "./schema/entities/Song";
 
 // In memory storage
 const data = {
@@ -16,6 +19,17 @@ const data = {
 }
 
 const main =async () => {
+
+    const orm = await createConnection({
+        type:"postgres",
+        database: "typeormtest1",
+        username: "postgres",
+        password: "postgres",
+        logging: true,
+        synchronize: true,
+        entities: [Artist, Song]
+    });
+
     const app = express();
     
     // App routes
