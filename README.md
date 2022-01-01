@@ -1,18 +1,7 @@
-# graphql-first-steps
-Just trying to learn some graphql
+# BRANCH V2
 
-## What's in here
-- Simple in-memory database with artists and songs.
-- GraphQL schema with root query and mutation
-- Some CRUD operations
-
-## What I still want to implement
-- Error handling inside of the resolvers
-- Perhaps define the schema in **.gql** files?
-- Integrate TypeScript
-- Client/Server configuration
-
-
-# Usage:
-1 terminal on script watch
-1 terminal on script dev
+## Upgrading to type-graphql
+ - In-memory database with artists and songs
+ - GraphQL schema now structured with classes and type-graphql decorators
+ - Resolvers now build using type-graphql decorators
+ - basic CRUD operations
