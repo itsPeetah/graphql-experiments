@@ -12,5 +12,5 @@
 
 
 ## Usage
-Run either ```yarn watch``` or ```npm run watch``` on a terminal.
-Run either ```yarn dev``` or ```npm run dev``` on a second terminal.
+- Run either ```yarn watch``` or ```npm run watch``` on a terminal.
+- Run either ```yarn dev``` or ```npm run dev``` on a second terminal.
