@@ -11,3 +11,8 @@ Just trying to learn some graphql
 - Perhaps define the schema in **.gql** files?
 - Integrate TypeScript
 - Client/Server configuration
+
+
+# Usage:
+1 terminal on script watch
+1 terminal on script dev
