@@ -2,8 +2,6 @@ import "reflect-metadata"
 import express from "express"
 import { graphqlHTTP } from "express-graphql";
 import {buildSchema} from "type-graphql"
-import { HelloResolver } from "./schema/graphql/resolvers/hello";
-import { QuestionResolver } from "./schema/graphql/resolvers/question";
 import { SongResolver } from "./schema/graphql/resolvers/song";
 import { ArtistResolver } from "./schema/graphql/resolvers/artist";
 
