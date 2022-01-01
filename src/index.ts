@@ -27,7 +27,7 @@ const main =async () => {
     app.use("/graphql", graphqlHTTP({
         graphiql:true,
         schema: await buildSchema({
-            resolvers: [HelloResolver, QuestionResolver, SongResolver, ArtistResolver],
+            resolvers: [SongResolver, ArtistResolver],
             validate:false
         }),
         context:{ data: data }
