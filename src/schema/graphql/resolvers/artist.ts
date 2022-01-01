@@ -1,70 +1,53 @@
-import { Arg, Ctx, FieldResolver, Int, Mutation, Query, Resolver, Root } from "type-graphql";
+import { Arg, /*Ctx,*/ FieldResolver, Int, Mutation, Query, Resolver, Root } from "type-graphql";
 import { Artist } from "../../entities/Artist";
 import { Song } from "../../entities/Song";
-import { GQLContext } from "../context";
+// import { GQLContext } from "../context";
 
 @Resolver(_=>Artist)
 export class ArtistResolver{
     @Query(() => [Artist],{description: "List all the artists."})
-    artists(
-        @Ctx() {data} : GQLContext
-    ){
-        return data.artists
+    async artists() : Promise<Artist[]>
+    {
+        return Artist.find()
     }
     
     @Query(() => Artist, {nullable: true, description: "Fetch a single artist."})
-    artist(
-        @Arg("id", () => Int) id : number,
-        @Ctx() {data}: GQLContext
-    ){
-        const artist = data.artists.find(theartist => theartist.id === id)
-        return artist;
+    async artist( @Arg("id", () => Int) id : number) : Promise<Artist | undefined>
+    {
+        return Artist.findOne(id);
     }
 
     @FieldResolver(() => [Song], {description: "List all the songs for the given artist."})
-    songs(
-        @Root() artist: Artist,
-        @Ctx() {data} : GQLContext
-    ){
-        const songs = data.songs.filter(thesong => thesong.artistId === artist.id)
-        return songs
+    async songs( @Root() artist: Artist) : Promise<Song[]>
+    {
+        return Song.find({where: {artistId : artist.id}});
     }
 
     @Mutation(() => Artist, {description: "Create a new artist."})
-    addArtist(
-        @Arg("name", () => String) name: string,
-        @Ctx() {data} : GQLContext
-    ){
-        const artist = {name: name, id: data.artists.length + 1};
-        data.artists.push(artist);
-        return artist;
+    async addArtist( @Arg("name", () => String) name: string) : Promise<Artist>
+    {
+        return Artist.create({name}).save()
     }
 
     @Mutation(() => Boolean,{description: "Change an artist's name."})
-    changeArtistName(
+    async changeArtistName(
         @Arg("id", () => Int) id: number,
-        @Arg("newName", () => String) newName: string,
-        @Ctx() {data} : GQLContext
-    ){
-        let success = false;
-        data.artists.forEach((theartist) => {
-            if(theartist.id === id){
-                success = true;
-                theartist.name = newName;
-            }
-        });
-        return success;
+        @Arg("newName", () => String) newName: string
+    ) : Promise<Boolean>
+    {
+        const result = await Artist.update(id, {name:newName});
+        return (result.affected && result.affected > 0) ? true : false;
     }
 
     @Mutation(() => Boolean, {description: "Remove an artist (and their songs) from the database."})
-    deleteArtist(
+    async deleteArtist(
         @Arg("id", () => Int) id: number,
-        @Arg("deleteSongs", () => Boolean, {defaultValue: false}) deleteSongs:Boolean = false,
-        @Ctx() {data} : GQLContext
-    ){
-        let prevLen = data.artists.length;
-        data.artists = data.artists.filter(theartist => theartist.id !== id);
-        if(deleteSongs) data.songs = data.songs.filter(thesong => thesong.artistId !== id);
-        return prevLen != data.artists.length;
+        @Arg("deleteSongs", () => Boolean, {defaultValue: false}) deleteSongs:Boolean = false
+    ) : Promise<Boolean>
+    {
+        await Artist.delete(id);
+        if(deleteSongs)
+            await Song.delete({artistId: id});
+        return true;
     }
 }
