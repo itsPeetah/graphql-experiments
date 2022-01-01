@@ -29,6 +29,7 @@ const main =async () => {
         synchronize: true,
         entities: [Artist, Song]
     });
+    console.log("Connection name:", orm.name)
 
     const app = express();
     
