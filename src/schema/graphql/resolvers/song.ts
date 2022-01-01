@@ -43,8 +43,8 @@ export class SongResolver{
 
     @Mutation(()=>Boolean)
     deleteSong(@Arg("id", () => Int) id : number, @Ctx() {data} : GQLContext){
-        let prevLen = data.songs.length
+        let prevLen = data.songs.length;
         data.songs = data.songs.filter(thesong => thesong.id != id);
-        return prevLen !== data.songs.length
+        return prevLen !== data.songs.length;
     }
 }
