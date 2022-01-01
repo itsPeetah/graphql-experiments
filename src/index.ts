@@ -29,6 +29,12 @@ const main =async () => {
         synchronize: true,
         entities: [Artist, Song]
     });
+    // data.artists.forEach(a => {
+    //     Artist.create(a).save()
+    // })
+    // data.songs.forEach(s => {
+    //     Song.create(s).save()
+    // })    
 
     const app = express();
     
