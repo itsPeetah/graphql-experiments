@@ -6,31 +6,47 @@ import { GQLContext } from "../context";
 @Resolver(_=>Song)
 export class SongResolver{
     @Query(() => [Song])
-    songs( @Ctx() {data} : GQLContext ){
+    songs(
+        @Ctx() {data} : GQLContext
+    ){
         return data.songs;
     }
     
     @Query(() => Song, {nullable: true})
-    song( @Arg("id", () => Int) id : number, @Ctx() {data}: GQLContext ){
+    song(
+        @Arg("id", () => Int) id : number,
+        @Ctx() {data}: GQLContext
+    ){
         const song = data.songs.find(thesong => thesong.id === id);
         return song;
     }
     
     @FieldResolver(() => Artist, {nullable: true})
-    artist( @Root() song: Song, @Ctx() {data}: GQLContext ){
+    artist(
+        @Root() song: Song,
+        @Ctx() {data}: GQLContext
+    ){
         const artist = data.artists.find(theartist => theartist.id === song.artistId);
         return artist;
     }
 
     @Mutation(() => Song)
-    addSong( @Arg("title", () => String) title: string, @Arg("artistId", () => Int) artistId: number, @Ctx() {data} : GQLContext ){
+    addSong(
+        @Arg("title", () => String) title: string,
+        @Arg("artistId", () => Int) artistId: number,
+        @Ctx() {data} : GQLContext
+    ){
         const song = {title: title, artistId: artistId, id: data.songs.length + 1};
         data.songs.push(song);
         return song;
     }
 
     @Mutation(() => Boolean)
-    changeSongTitle(@Arg("id", () => Int) id: number, @Arg("newTitle", () => String) newTitle: string, @Ctx() {data} : GQLContext){
+    changeSongTitle(
+        @Arg("id", () => Int) id: number,
+        @Arg("newTitle", () => String) newTitle: string,
+        @Ctx() {data} : GQLContext
+    ){
         let success = false;
         data.songs.forEach((thesong) => {
             if (thesong.id === id){
@@ -42,7 +58,10 @@ export class SongResolver{
     }
 
     @Mutation(()=>Boolean)
-    deleteSong(@Arg("id", () => Int) id : number, @Ctx() {data} : GQLContext){
+    deleteSong(
+        @Arg("id", () => Int) id : number,
+        @Ctx() {data} : GQLContext
+    ){
         let prevLen = data.songs.length;
         data.songs = data.songs.filter(thesong => thesong.id != id);
         return prevLen !== data.songs.length;
