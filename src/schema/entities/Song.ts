@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from "type-graphql";
+import { Artist } from "./Artist";
 
 @ObjectType()   // Makes this a (type-)graphql datatype
 export class Song {
@@ -7,14 +8,11 @@ export class Song {
     id!: number;
 
     @Field(() => String)
-    createdAt: Date = new Date();
-
-    @Field(() => String)
-    updatedAt: Date = new Date();
-
-    @Field(() => String)
     title!: string;
   
     @Field(() => Int)
-    artistId!:number
+    artistId!: number;
+
+    @Field(() => Artist, {nullable: true})
+    artist?: Artist;
 }

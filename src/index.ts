@@ -5,9 +5,10 @@ import {buildSchema} from "type-graphql"
 import { HelloResolver } from "./schema/graphql/resolvers/hello";
 import { QuestionResolver } from "./schema/graphql/resolvers/question";
 import { SongResolver } from "./schema/graphql/resolvers/song";
+import { ArtistResolver } from "./schema/graphql/resolvers/artist";
 
+// In memory storage
 const data = {
-    // In memory storage
     artists: [
         {id: 1, name: 'Bad Religion'},
         {id: 2, name: 'Rise Against'},
@@ -36,7 +37,7 @@ const main =async () => {
     app.use("/graphql", graphqlHTTP({
         graphiql:true,
         schema: await buildSchema({
-            resolvers: [HelloResolver, QuestionResolver,SongResolver],
+            resolvers: [HelloResolver, QuestionResolver, SongResolver, ArtistResolver],
             validate:false
         }),
         context:{ data: data }

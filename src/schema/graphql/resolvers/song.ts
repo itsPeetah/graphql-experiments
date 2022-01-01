@@ -1,8 +1,9 @@
-import { Arg, Ctx, Query, Resolver } from "type-graphql";
+import { Artist } from "../../entities/Artist";
+import { Arg, Ctx, FieldResolver, Int, Query, Resolver, Root } from "type-graphql";
 import { Song } from "../../entities/Song";
 import { GQLContext } from "../context";
 
-@Resolver()
+@Resolver(_=>Song)
 export class SongResolver{
     @Query(() => [Song])
     songs(
@@ -11,11 +12,22 @@ export class SongResolver{
         return data.songs
     }
     
-    // @Query(() => Song)
-    // song(
-    //     @Ctx() {data}: GQLContext,
-    //     @Arg("id", )
-    // ){
-    //     const song = data.songs.find(thesong => thesong.id === id)
-    // }
+    @Query(() => Song, {nullable: true})
+    song(
+        @Arg("id", () => Int) id : number,
+        @Ctx() {data}: GQLContext
+    ){
+        const song = data.songs.find(thesong => thesong.id === id)
+        return song;
+    }
+    
+    @FieldResolver(() => Artist, {nullable: true})
+    async artist(
+        @Root() song: Song,
+        @Ctx() {data}: GQLContext
+    ){
+        console.log(song)
+        const artist = data.artists.find(theartist => theartist.id === song.artistId);
+        return artist
+    }
 }
