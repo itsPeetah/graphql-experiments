@@ -1,6 +1,10 @@
 # GraphQL Experiments
 
 ## Branches
+| Branch | Scope | Content |
+| -: | :-: | :- |
+| v1 | First steps | GraphQL, Express |
+| v2 | type-graphql | TypeScript, type-graphql |
 
 ## Next Step
 - TypeORM PostreSQL connection
