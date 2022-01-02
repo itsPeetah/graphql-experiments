@@ -37,7 +37,7 @@ const main =async () => {
     }));
     
     // Start app
-        app.listen(5000., () => console.log("Server started @ localhost:5000."));
+    app.listen(5000., () => console.log("Server started @ localhost:5000."));
 
 }
 
