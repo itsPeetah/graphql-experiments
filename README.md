@@ -9,6 +9,7 @@
 ## Next Step
 - TypeORM PostreSQL connection
 - Move the in-memory database to Postgres
+- Integrate relationships into entity definitions
 
 
 ## Usage
