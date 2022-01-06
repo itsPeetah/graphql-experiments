@@ -7,7 +7,7 @@ import { Artist } from "./Artist";
 export class Song extends BaseEntity{
 
     @Field(() => Int)    // Makes this (type-)graphql field
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn()   // Makes this a typeorm table column
     id!: number;
 
     @Field(() => String)
