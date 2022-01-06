@@ -8,7 +8,7 @@
     "dev": "nodemon dist/index.js",
     "tsdev": "nodemon --exec ts-node src/index.ts",
     "start": "node dist/index.js",
-    "tsstart": "ts-node src/index.ts",
+    "tsstart": "ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
