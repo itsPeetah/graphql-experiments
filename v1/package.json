@@ -1,0 +1,28 @@
+{
+  "name": "graphql-first-steps",
+  "version": "1.0.0",
+  "description": "Just trying to learn some graphql",
+  "main": "server.js",
+  "scripts": {
+    "devStart" : "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsPeetah/graphql-first-steps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itsPeetah/graphql-first-steps/issues"
+  },
+  "homepage": "https://github.com/itsPeetah/graphql-first-steps#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
